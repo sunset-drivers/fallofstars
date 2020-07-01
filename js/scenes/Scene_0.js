@@ -11,7 +11,7 @@ class Scene_0 extends Phaser.Scene {
     } 
     
     update() { 
-        this.player.PlayerMove();
+        this.player.PlayerControl();
     } 
     
 } 
