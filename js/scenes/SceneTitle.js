@@ -1,8 +1,8 @@
 class SceneTitle extends Phaser.Scene { 
     constructor() { super('SceneTitle'); } 
     preload() { 
-        this.load.image("btnPlay","assets/sprites/00/btnPlay.png"); 
-        this.load.image("title","assets/sprites/00/title2.png");
+        this.load.image("btnPlay","assets/sprites/title/btnPlay.png"); 
+        this.load.image("title","assets/sprites/title/title2.png");
     } 
 
     create() {

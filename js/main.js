@@ -6,6 +6,7 @@ window.onload= function() {
         width: 800, 
         height: 600, 
         parent: 'phaser-game',
+        pixelArt: true,
         physics: {
             default: 'arcade',
             arcade: {
