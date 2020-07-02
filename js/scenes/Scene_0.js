@@ -6,7 +6,7 @@ class Scene_0 extends Phaser.Scene {
     } 
 
     create() {
-        var back = this.add.image(400,300,"background");
+        var back = this.add.image(400,300,"background").setScale(1.4);
         this.player = new Player({scene:this, x:400, y:300});
     } 
     

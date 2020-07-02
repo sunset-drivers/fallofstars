@@ -1,6 +1,6 @@
 var game;
 
-window.onload= function() {
+window.onload = function() {
     var config = { 
         type: Phaser.AUTO, 
         width: 800, 
@@ -20,5 +20,9 @@ window.onload= function() {
     };
 
     game = new Phaser.Game(config);     
+}
+
+function CameraFollow (scene, target) {
+    scene.cameras.main.startFollow(target);
 }
 

@@ -22,6 +22,8 @@ class Player extends Phaser.GameObjects.Sprite {
         this.player.setScale(3);
         this.StartPlayerInfo();
         this.StartPlayerAnimations();
+        console.log(game);
+       // CameraFollow(this.config.scene, this.player);
         console.log("Player Criado!");
     }
 
