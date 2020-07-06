@@ -4,7 +4,7 @@ window.onload = function() {
     var config = { 
         type: Phaser.AUTO, 
         width: 800, 
-        height: 600, 
+        height: 640, 
         parent: 'phaser-game',
         pixelArt: true,
         physics: {

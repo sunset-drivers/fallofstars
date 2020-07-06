@@ -1,15 +1,17 @@
 class Player extends Phaser.GameObjects.Sprite {
     constructor (config) {
-        super(config.scene, config.x, config.y);  
+        super(config.scene, config.x, config.y);
 
-        this.scene.physics.add.sprite(400, 300, "player")
+        this.spawn_point = {
+            x: config.x,
+            y: config.y
+        }       
+
         this.scene.physics.world.enable(this);
-
         this.body.setSize(this.width - 20, this.height - 5, true);
         this.body.setOffset(10, 5)       
         this.scene.add.existing(this);      
-        this.StartPlayer(); 
-        console.log(this);
+        this.StartPlayer();         
     } 
 
     StartPlayer(){
@@ -152,5 +154,16 @@ class Player extends Phaser.GameObjects.Sprite {
             return true;
         else
             return false;
+    }
+
+    Respawn(){
+        this.setPosition(this.spawn_point.x, this.spawn_point.y);
+    }
+
+    SetCheckpoint(x, y){
+        this.spawn_point = {
+            x: x,
+            y: y
+        }
     }
 }

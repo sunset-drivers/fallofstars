@@ -1,6 +1,10 @@
 class Scene_0 extends Phaser.Scene { 
   
-    constructor() { super('Scene_0'); this.player;} 
+    constructor() { 
+        super('Scene_0'); 
+        this.player; 
+    } 
+
     preload() {
         this.load.spritesheet("player", "assets/sprites/player/vincent.png",
             { frameWidth: 32, framHeight: 32 }
@@ -10,8 +14,8 @@ class Scene_0 extends Phaser.Scene {
     } 
 
     create() {                   
-        this.player = new Player({scene:this, x:64, y:320});  
-        //this.spawn_point = new Vector2(64, 320);
+        this.player = new Player({scene:this, x:64, y:320});        
+        
         const map = this.make.tilemap({key:"map"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
@@ -21,20 +25,28 @@ class Scene_0 extends Phaser.Scene {
         const worldLayer = map.createStaticLayer("world", tileset, 0, 0);
         worldLayer.setCollisionByProperty({ collides: true });   
 
-        const objectsLayer = map.createStaticLayer("objects", tileset, 0, 0);
-        objectsLayer.setCollisionByProperty({ collides: true });   
+        this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0);
+        this.objectsLayer.setCollisionByProperty({ collides: true });   
 
         const debugGraphics = this.add.graphics().setAlpha(0.75);
         
         this.physics.add.collider(this.player, worldLayer);
-        this.physics.add.collider(this.player, objectsLayer);
+        this.physics.add.collider(this.player, this.objectsLayer);
 
-        console.log("fisica", this.physics)
+        console.log("layer", this.objectsLayer);
     } 
-    
+
     update() { 
         if(this.player)
-            this.player.PlayerControl();
+        {   
+            var keyObj = this.input.keyboard.addKey('R');    
+                keyObj.on('down', () => this.player.Respawn());      
+           // if(this.physics.collide(this.player))
+              //  console.log("Colidiu, ", this.physics.collide(this.player, this.objectsLayer))
+
+            this.player.PlayerControl();            
+        }
+            
     } 
     
 } 
