@@ -9,20 +9,17 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.scene.physics.world.enable(this);
         this.body.setSize(this.width - 20, this.height - 5, true);
-        this.body.setOffset(10, 5)       
+        this.body.setOffset(10, 5)              
         this.scene.add.existing(this);      
         this.StartPlayer();         
+       
     } 
 
     StartPlayer(){
-        console.log("scene2:", this.scene);        
-        
         this.setScale(2);
         this.StartPlayerInfo();
         this.StartPlayerAnimations();        
-        console.log(game);
-        CameraFollow(this.scene, this);
-        console.log("Player Criado!");
+        CameraFollow(this.scene, this);       
     }
 
     StartPlayerInfo() {
@@ -71,7 +68,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
     PlayerControl() {
         if(this)
-        {   
+        {               
             this.PlayerMove();                      
             this.PlayerJump();               
         }
