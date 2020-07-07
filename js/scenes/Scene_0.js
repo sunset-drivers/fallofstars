@@ -47,13 +47,7 @@ class Scene_0 extends Phaser.Scene {
 
     update() { 
         if(this.player)
-        {   
-           // console.log(this.physics.world.collide(this.player, this.objectsLayer));
-
-
-            var keyObj = this.input.keyboard.addKey('R');    
-                keyObj.on('down', () => this.player.Respawn());                 
-
+        {              
             this.player.PlayerControl();                        
         }
             

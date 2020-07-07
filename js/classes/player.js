@@ -25,6 +25,7 @@ class Player extends Phaser.GameObjects.Sprite {
     StartPlayerInfo() {
         //WALKING DATA
         this.speed = 0;
+        this.is_dashing = false;
     }
 
     StartPlayerAnimations(){
@@ -70,7 +71,14 @@ class Player extends Phaser.GameObjects.Sprite {
         if(this)
         {               
             this.PlayerMove();                      
-            this.PlayerJump();               
+            this.PlayerJump();      
+            
+            var Respawn_key = this.scene.input.keyboard.addKey('R');    
+            Respawn_key.on('down', () => this.Respawn());         
+            
+            var Dash_key = this.scene.input.keyboard.addKey('SPACE');    
+            Dash_key.on('down', () => this.PlayerDash());         
+
         }
     }
 
@@ -80,57 +88,81 @@ class Player extends Phaser.GameObjects.Sprite {
             let delta = 0.2    
             let speed_limit = 7;
 
-            let cursors = this.scene.input.keyboard.createCursorKeys();            
-            if (cursors.left.isDown)
-            {
-                if(this.speed < speed_limit)
-                    this.speed += delta;
-                else if(this.speed > speed_limit)
-                    this.speed = speed_limit
+            if(!this.is_dashing)
+            {            
+                let cursors = this.scene.input.keyboard.createCursorKeys();            
+                if (cursors.left.isDown)
+                {
+                    if(this.speed < speed_limit)
+                        this.speed += delta;
+                    else if(this.speed > speed_limit)
+                        this.speed = speed_limit
 
-                this.body.setVelocityX(-36 * this.speed);
-                this.flipX = true;
+                    this.body.setVelocityX(-32 * this.speed);
+                    this.flipX = true;
 
-                if(this.IsGrounded())
-                    this.anims.play('walking', true);
-            }
-            else if (cursors.right.isDown)
-            {
-                if(this.speed < speed_limit)
-                    this.speed += delta;
-                else if(this.speed > speed_limit)
-                    this.speed = speed_limit
+                    if(this.IsGrounded())
+                        this.anims.play('walking', true);
+                }
+                else if (cursors.right.isDown)
+                {
+                    if(this.speed < speed_limit)
+                        this.speed += delta;
+                    else if(this.speed > speed_limit)
+                        this.speed = speed_limit
 
-                this.body.setVelocityX(36 * this.speed);
-                this.flipX = false;
+                    this.body.setVelocityX(32 * this.speed);
+                    this.flipX = false;
 
-                if(this.IsGrounded())
-                    this.anims.play('walking', true);
+                    if(this.IsGrounded())
+                        this.anims.play('walking', true);
+                }
+                else
+                {
+                    if(this.speed > 0.0){
+                        this.speed -= delta * 2;                    
+                        this.anims.play('stop-walking', true); 
+                        
+                    } else if(this.speed < 0.0){
+                        this.speed = 0.0
+                        this.anims.stop();
+                        this.anims.play('idle', true); 
+                    }
+
+                    let fix_side;
+                    if(this.flipX) 
+                        fix_side = -1;
+                    else 
+                        fix_side = 1;
+
+                    this.body.setVelocityX(this.speed * 32 * fix_side);
+                                    
+                }
             }
             else
             {
-                if(this.speed > 0.0){
-                    this.speed -= delta * 2;                    
-                    this.anims.play('stop-walking', true); 
-                } else if(this.speed < 0.0){
-                    this.speed = 0.0
-                    this.anims.stop();
-                    this.anims.play('idle', true); 
-                }
-
                 let fix_side;
                 if(this.flipX) 
                     fix_side = -1;
                 else 
                     fix_side = 1;
-
-                this.body.setVelocityX(this.speed * 36 * fix_side);
-                                 
+                    
+                this.body.setVelocity(this.speed * 100 * fix_side, -35);
             }
              
             if(this.body.velocity.x == 0 && this.body.velocity.y == 0)
                 this.anims.play('idle', true); 
             
+        }
+    }
+
+    PlayerDash() {             
+        if(!this.is_dashing) 
+        {        
+            this.is_dashing = true;        
+            setTimeout(() => {
+                this.is_dashing = false;
+            },250)                         
         }
     }
 
