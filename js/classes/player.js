@@ -122,7 +122,7 @@ class Player extends Phaser.GameObjects.Sprite {
                     if(this.speed > 0.0){
                         this.speed -= delta * 2;                    
                         this.anims.play('stop-walking', true); 
-                        
+
                     } else if(this.speed < 0.0){
                         this.speed = 0.0
                         this.anims.stop();
@@ -147,7 +147,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 else 
                     fix_side = 1;
                     
-                this.body.setVelocity(this.speed * 100 * fix_side, -35);
+                this.body.setVelocity(7 * 100 * fix_side, -35);
             }
              
             if(this.body.velocity.x == 0 && this.body.velocity.y == 0)
