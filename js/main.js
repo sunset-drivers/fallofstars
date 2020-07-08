@@ -16,7 +16,8 @@ window.onload = function() {
         }, 
         scene: [
             SceneTitle,
-            Scene_0
+            Scene_0,
+            Scene_1
         ] 
     };
 
