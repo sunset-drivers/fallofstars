@@ -16,7 +16,12 @@ class Scene_0 extends Phaser.Scene {
 
     create() {                   
         this.player = new Player({scene:this, x:64, y:320});
-        const checkpoint = this.physics.add.sprite(1450, 200,'star');        
+
+        const checkpoint = this.physics.add.sprite(1450, 200,'star');   
+        const starFase = this.physics.add.sprite(1824, 384,'star'); 
+
+        starFase.body.allowGravity = false;
+        checkpoint.body.allowGravity = false;
         
         const map = this.make.tilemap({key:"map"});
 
@@ -29,7 +34,7 @@ class Scene_0 extends Phaser.Scene {
 
         this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0);
         this.objectsLayer.setCollisionByProperty({ collides: true }); 
-
+        
         const debugGraphics = this.add.graphics().setAlpha(0.75);
         
         this.physics.add.collider(this.player, this.worldLayer);
@@ -37,8 +42,9 @@ class Scene_0 extends Phaser.Scene {
         this.physics.add.collider(this.player, this.objectsLayer, () => {            
             this.player.Respawn(); 
         });        
-
+            
         this.physics.add.collider(this.player, checkpoint, () => {
+            
             this.player.SetCheckpoint(1450, 200);
             checkpoint.destroy();
         });
