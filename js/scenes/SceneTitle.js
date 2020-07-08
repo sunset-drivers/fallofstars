@@ -19,6 +19,6 @@ class SceneTitle extends Phaser.Scene {
     } 
     
     startGame() { 
-        this.scene.start('Scene_1');
+        this.scene.start('Scene_0');
     }
 } 
