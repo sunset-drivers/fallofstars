@@ -32,7 +32,7 @@ class Scene_1 extends Phaser.Scene {
             repeat: 0
         });           
         
-        const map = this.make.tilemap({key:"map"});
+        const map = this.make.tilemap({key:"map1"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
         const tileset = map.addTilesetImage("default", "tiles");   
