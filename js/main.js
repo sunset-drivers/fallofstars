@@ -10,7 +10,7 @@ window.onload = function() {
         physics: {
             default: 'arcade',
             arcade: {
-                debug:true,
+                //debug:true,
                 gravity: { y: 1000 }
             }
         }, 
@@ -27,4 +27,3 @@ window.onload = function() {
 function CameraFollow (scene, target) {
     scene.cameras.main.startFollow(target);
 }
-
