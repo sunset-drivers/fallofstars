@@ -26,6 +26,13 @@ class Player extends Phaser.GameObjects.Sprite {
         //WALKING DATA
         this.speed = 0;
         this.is_dashing = false;
+
+        //JUMPING DATA
+        this.jump_force = -300;
+        this.is_jumping = false;
+        this.jump_time = 1;
+        this.jump_time_counter = 0;
+
     }
 
     StartPlayerAnimations(){
@@ -172,10 +179,27 @@ class Player extends Phaser.GameObjects.Sprite {
         //testar se esta no chao: && player.body.touching.down  
         if (cursors.up.isDown && this.IsGrounded())
         {
-            this.body.setVelocityY(-400);
+            this.is_jumping = true;
+            this.jump_time_counter = this.jump_time;
+            this.body.setVelocityY(this.jump_force);
             this.anims.stop();
             this.anims.play('jumping', true);             
-        }        
+        } 
+        
+        if(cursors.up.isDown && this.is_jumping)
+        {
+            if(this.jump_time_counter > 0){
+                this.body.setVelocityY(this.jump_force);
+                this.jump_time_counter -= 0.1;
+            }else{
+                this.is_jumping = false;
+            }
+        }
+
+        if(cursors.up.isUp){
+            this.is_jumping = false;
+        }
+        
     }
 
     IsGrounded() {   
