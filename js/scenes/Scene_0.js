@@ -12,7 +12,7 @@ class Scene_0 extends Phaser.Scene {
             { frameWidth: 32, frameHeight: 32 }
         );
         this.load.tilemapTiledJSON('map0', 'assets/tilemaps/00/sc_tm_00.json'); 
-        updateColor(0, 10, 10);            
+       // updateColor(0, 10, 10);            
     } 
 
     create() {                   
