@@ -16,7 +16,11 @@ class Scene_1 extends Phaser.Scene {
 
     create() {                   
         this.player = new Player({scene:this, x:64, y:230});
-        const checkpoint = this.physics.add.sprite(1450, 200,'star');        
+        const checkpoint = this.physics.add.sprite(864, 416,'star');   
+        const starFase = this.physics.add.sprite(1824, 384,'star'); 
+
+        starFase.body.allowGravity = false;
+        checkpoint.body.allowGravity = false;    
         
         const map = this.make.tilemap({key:"map"});
 
