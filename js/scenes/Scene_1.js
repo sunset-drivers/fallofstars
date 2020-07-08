@@ -10,18 +10,28 @@ class Scene_1 extends Phaser.Scene {
             { frameWidth: 32, framHeight: 32 }
         );         
         this.load.image("tiles", "assets/tilemaps/01/default.png")
-        this.load.image("star", "assets/sprites/star/star.png")
+        this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
+            { frameWidth: 32, frameHeight: 32 }
+        );
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/01/sc_tm_01.json');             
     } 
 
     create() {                   
         this.player = new Player({scene:this, x:64, y:230});
-        const checkpoint = this.physics.add.sprite(864, 416,'star');   
-        const starFase = this.physics.add.sprite(1824, 384,'star'); 
 
-        starFase.body.allowGravity = false;
-        checkpoint.body.allowGravity = false;    
+        this.checkpoint = this.physics.add.sprite(864, 416,'star');   
+        this.starFase = this.physics.add.sprite(1824, 384,'star'); 
+
+        this.starFase.body.allowGravity = false;
+        this.checkpoint.body.allowGravity = false;    
         
+        this.anims.create({
+            key: 'sparkle',
+            frames: this.anims.generateFrameNumbers('star', { start: 0, end: 3}),
+            frameRate: 4,
+            repeat: 0
+        });           
+
         const map = this.make.tilemap({key:"map"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
@@ -44,23 +54,24 @@ class Scene_1 extends Phaser.Scene {
             this.player.Respawn(); 
         });        
 
-        this.physics.add.collider(this.player, checkpoint, () => {
+        this.physics.add.collider(this.player, this.checkpoint, () => {
             this.player.SetCheckpoint(1450, 200);
-            checkpoint.destroy();
+            this.checkpoint.destroy();
+            this.checkpoint = null;
         });
         
     } 
 
     update() { 
         if(this.player)
-        {   
-           // console.log(this.physics.world.collide(this.player, this.objectsLayer));
+        {              
+            this.player.PlayerControl();  
 
-
-            var keyObj = this.input.keyboard.addKey('R');    
-                keyObj.on('down', () => this.player.Respawn());                 
-
-            this.player.PlayerControl();                        
+            if(this.checkpoint)
+                this.checkpoint.anims.play('sparkle', true); 
+      
+            if(this.starFase)
+                this.starFase.anims.play('sparkle', true); 
         }
             
         
