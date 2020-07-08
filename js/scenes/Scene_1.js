@@ -55,7 +55,7 @@ class Scene_1 extends Phaser.Scene {
         });        
 
         this.physics.add.collider(this.player, this.checkpoint, () => {
-            this.player.SetCheckpoint(1450, 200);
+            this.player.SetCheckpoint(864, 416);
             this.checkpoint.destroy();
             this.checkpoint = null;
         });

@@ -25,7 +25,6 @@ class Player extends Phaser.GameObjects.Sprite {
     StartPlayerInfo() {
         //WALKING DATA
         this.speed = 0;
-        this.jump_force = 0;
         this.is_dashing = false;
     }
 
@@ -72,10 +71,7 @@ class Player extends Phaser.GameObjects.Sprite {
         if(this)
         {               
             this.PlayerMove();                      
-            this.PlayerJump();   
-            
-            if(this.body.onWall())
-                this.is_dashing = false;
+            this.PlayerJump();      
             
             var Respawn_key = this.scene.input.keyboard.addKey('R');    
             Respawn_key.on('down', () => this.Respawn());         
