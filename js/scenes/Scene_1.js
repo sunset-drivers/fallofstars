@@ -13,7 +13,7 @@ class Scene_1 extends Phaser.Scene {
         this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
             { frameWidth: 32, frameHeight: 32 }
         );
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/01/sc_tm_01.json');             
+        this.load.tilemapTiledJSON('map1', 'assets/tilemaps/01/sc_tm_01.json');             
     } 
 
     create() {                   
@@ -31,7 +31,7 @@ class Scene_1 extends Phaser.Scene {
             frameRate: 4,
             repeat: 0
         });           
-
+        
         const map = this.make.tilemap({key:"map"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
@@ -60,6 +60,10 @@ class Scene_1 extends Phaser.Scene {
             this.checkpoint = null;
         });
         
+        this.physics.add.collider(this.player, this.starFase, () => {                                    
+            this.scene.stop(Scene_0);
+            this.scene.start('Scene_1');            
+        });
     } 
 
     update() { 

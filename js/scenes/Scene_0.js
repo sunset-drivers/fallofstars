@@ -6,14 +6,12 @@ class Scene_0 extends Phaser.Scene {
     } 
 
     preload() {
-         this.load.spritesheet("player", "assets/sprites/player/vincent.png",
-             { frameWidth: 32, frameHeight: 32 }
-        );         
-        this.load.image("tiles", "assets/tilemaps/00/default.png")
+        this.load.spritesheet("player", "assets/sprites/player/vincent.png",{ frameWidth: 32, frameHeight: 32 });         
+        this.load.image("tiles0", "assets/tilemaps/00/default.png")
         this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
             { frameWidth: 32, frameHeight: 32 }
         );
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/00/sc_tm_00.json');             
+        this.load.tilemapTiledJSON('map0', 'assets/tilemaps/00/sc_tm_00.json');             
     } 
 
     create() {                   
@@ -31,15 +29,13 @@ class Scene_0 extends Phaser.Scene {
                 frames: this.anims.generateFrameNumbers('star', { start: 0, end: 3}),
                 frameRate: 4,
                 repeat: 0
-            });           
-
-            
+            });                       
         //FIM ESTRELAS
 
-        const map = this.make.tilemap({key:"map"});
+        const map = this.make.tilemap({key:"map0"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
-        const tileset = map.addTilesetImage("default", "tiles");   
+        const tileset = map.addTilesetImage("default", "tiles0");   
 
         //Os parâmetros são o Nome do Layer no Tiled, o tileset e a posição x e y;
         this.worldLayer = map.createStaticLayer("world", tileset, 0, 0);
@@ -62,6 +58,12 @@ class Scene_0 extends Phaser.Scene {
             this.checkpoint.destroy();
             this.checkpoint = null;
         });
+
+        this.physics.add.collider(this.player, this.starFase, () => {                                    
+            this.scene.stop(Scene_0);
+            this.scene.start('Scene_1');            
+        });
+        
         
     } 
 
