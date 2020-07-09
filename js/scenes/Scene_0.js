@@ -7,7 +7,7 @@ class Scene_0 extends Phaser.Scene {
 
     preload() {
         this.load.spritesheet("player", "assets/sprites/player/vincent.png",{ frameWidth: 32, frameHeight: 32 });         
-        this.load.image("tiles0", "assets/tilemaps/00/default.png")
+        this.load.image("tiles0", "assets/tilemaps/00/tileset.png")
         this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
             { frameWidth: 32, frameHeight: 32 }
         );
@@ -36,11 +36,14 @@ class Scene_0 extends Phaser.Scene {
         const map = this.make.tilemap({key:"map0"});
 
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
-        const tileset = map.addTilesetImage("default", "tiles0");   
+        const tileset = map.addTilesetImage("Tileset", "tiles0");   
 
         //Os parâmetros são o Nome do Layer no Tiled, o tileset e a posição x e y;
         this.worldLayer = map.createStaticLayer("world", tileset, 0, 0);
-        this.worldLayer.setCollisionByProperty({ collides: true });   
+        this.worldLayer.setCollisionByProperty({ collides: true });  
+        
+        this.vinesLayer = map.createStaticLayer("vines", tileset, 0, 0);
+        this.vinesLayer.setCollisionByProperty({ collides: true });   
 
         this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0);
         this.objectsLayer.setCollisionByProperty({ collides: true }); 

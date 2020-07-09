@@ -33,6 +33,9 @@ class Player extends Phaser.GameObjects.Sprite {
         this.jump_time = 1;
         this.jump_time_counter = 0;
 
+        //DASH DATA
+        this.can_dash = true;
+
     }
 
     StartPlayerAnimations(){
