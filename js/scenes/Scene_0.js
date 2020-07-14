@@ -17,7 +17,7 @@ class Scene_0 extends Phaser.Scene {
 
     create() {                   
         this.player = new Player({scene:this, x:64, y:320});
-
+        this.player.setScale(1.5);
         //CARREGANDO AS ESTRELAS
             this.checkpoint = this.physics.add.sprite(1450, 200,'star');        
             this.starFase = this.physics.add.sprite(1824, 384,'star'); 
@@ -39,12 +39,12 @@ class Scene_0 extends Phaser.Scene {
         const tileset = map.addTilesetImage("Tileset", "tiles0", 32, 32, 1, 2);   
         
         //Os parâmetros são o Nome do Layer no Tiled, o tileset e a posição x e y;
-        this.worldLayer = map.createStaticLayer("world", tileset, 0, 0).setScale(1.2);
+        this.worldLayer = map.createStaticLayer("world", tileset, 0, 0)
         this.worldLayer.setCollisionByProperty({ collides: true });          
-        this.vinesLayer = map.createStaticLayer("vines", tileset, 0, 0).setScale(1.2);
+        this.vinesLayer = map.createStaticLayer("vines", tileset, 0, 0)
         this.vinesLayer.setCollisionByProperty({ collides: true });   
 
-        this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0).setScale(1.2);
+        this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0)
         this.objectsLayer.setCollisionByProperty({ collides: true });         
         const debugGraphics = this.add.graphics().setAlpha(0.75);
         
