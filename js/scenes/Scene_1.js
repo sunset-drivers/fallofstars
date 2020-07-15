@@ -9,7 +9,7 @@ class Scene_1 extends Phaser.Scene {
         this.load.spritesheet("player", "assets/sprites/player/vincent.png",
             { frameWidth: 32, framHeight: 32 }
         );         
-        this.load.image("tiles1", "assets/tilemaps/01/Tileset_extruded.png")
+        this.load.image("tiles1", "assets/tilemaps/01/tileset_extruded.png")
         this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
             { frameWidth: 32, frameHeight: 32 }
         );
