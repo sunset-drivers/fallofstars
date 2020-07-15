@@ -65,7 +65,7 @@ class Scene_1 extends Phaser.Scene {
         
         this.physics.add.collider(this.player, this.starFase, () => {                                    
             this.scene.stop(Scene_0);
-            this.scene.start('Scene_1');            
+            this.scene.start('SceneEnd');            
         });
     } 
 

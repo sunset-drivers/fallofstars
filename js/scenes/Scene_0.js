@@ -12,10 +12,12 @@ class Scene_0 extends Phaser.Scene {
             { frameWidth: 32, frameHeight: 32 }
         );
         this.load.tilemapTiledJSON('map0', 'assets/tilemaps/00/sc_tm_00.json'); 
-       // updateColor(0, 10, 10);            
+                 
     } 
 
     create() {                   
+     
+
         this.player = new Player({scene:this, x:64, y:320});
         this.player.setScale(1.5);
         //CARREGANDO AS ESTRELAS

@@ -3,10 +3,13 @@ class SceneTitle extends Phaser.Scene {
     preload() { 
         this.load.image("btnPlay","assets/sprites/title/btnPlay.png"); 
         this.load.image("title","assets/sprites/title/title2.png");
+        this.load.image("back","assets/sprites/title/back.png");
     } 
 
     create() {
          console.log('SceneTitle'); 
+         var background = this.add.image(400,300,'back');
+         background.setScale(4);
          var btnStart = this.add.image(400,400,'btnPlay');
 
          btnStart.setInteractive();

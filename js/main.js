@@ -4,9 +4,10 @@ window.onload = function() {
     var config = { 
         type: Phaser.AUTO, 
         width: 800, 
-        height: 640, 
+        height: 600, 
         parent: 'phaser-game',
         pixelArt: true,
+        backgroundColor: '0x000044',
         physics: {
             default: 'arcade',
             arcade: {
@@ -17,7 +18,8 @@ window.onload = function() {
         scene: [
             SceneTitle,
             Scene_0,
-            Scene_1
+            Scene_1,
+            SceneEnd
         ] 
     };
 
