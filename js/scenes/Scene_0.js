@@ -12,21 +12,21 @@ class Scene_0 extends Phaser.Scene {
             { frameWidth: 32, frameHeight: 32 }
         );
         this.load.tilemapTiledJSON('map0', 'assets/tilemaps/00/sc_tm_00.json'); 
-        this.load.audio("sound0", 'assets/sounds/Flowers_In_The_Rain.mp3');        
+       // this.load.audio("sound0", 'assets/sounds/Flowers_In_The_Rain.mp3');        
     } 
 
     create() {                   
      
-        var music0 = this.sound.add("sound0", {
-            mute: false,
-            volume: 0.1,
-            rate: 1,
-            detune: 0,
-            seek: 0,
-            loop: true,
-            delay: 0
-        });
-        music0.play();
+        // var music0 = this.sound.add("sound0", {
+        //     mute: false,
+        //     volume: 0.1,
+        //     rate: 1,
+        //     detune: 0,
+        //     seek: 0,
+        //     loop: true,
+        //     delay: 0
+        // });
+       // music0.play();
         this.player = new Player({scene:this, x:64, y:320});
         this.player.setScale(1.5);
         //CARREGANDO AS ESTRELAS
@@ -74,7 +74,7 @@ class Scene_0 extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.starFase, () => {                                    
             this.scene.stop(Scene_0);
-            music0.stop();
+          //  music0.stop();
             this.scene.start('Scene_1');            
         });
         
