@@ -37,14 +37,15 @@ class Scene_1 extends Phaser.Scene {
         //Os parâmetros são o nome do tileset no Tiled e o nome da imagem no preload()
         const tileset = map.addTilesetImage("Tileset", "tiles1", 32, 32, 1, 2);   
 
+        this.decoLayer = map.createStaticLayer("deco", tileset, 0, 0);
         //Os parâmetros são o Nome do Layer no Tiled, o tileset e a posição x e y;
         this.worldLayer = map.createStaticLayer("world", tileset, 0, 0);
         this.worldLayer.setCollisionByProperty({ collides: true });   
 
         this.objectsLayer = map.createStaticLayer("objects", tileset, 0, 0);
         this.objectsLayer.setCollisionByProperty({ collides: true }); 
-        this.decoLayer = map.createStaticLayer("vines", tileset, 0, 0);
-        this.decoLayer = map.createStaticLayer("deco", tileset, 0, 0);
+        this.vineLayer = map.createStaticLayer("vines", tileset, 0, 0);
+        
         
 
         const debugGraphics = this.add.graphics().setAlpha(0.75);
