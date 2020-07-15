@@ -13,10 +13,22 @@ class Scene_1 extends Phaser.Scene {
         this.load.spritesheet("star", "assets/sprites/star/star_spritesheet.png",
             { frameWidth: 32, frameHeight: 32 }
         );
-        this.load.tilemapTiledJSON('map1', 'assets/tilemaps/01/sc_tm_01.json');             
+        this.load.tilemapTiledJSON('map1', 'assets/tilemaps/01/sc_tm_01.json');  
+        this.load.audio("sound1", 'assets/sounds/Dream_Of_The_Ancestor.mp3');                 
     } 
 
-    create() {                   
+    create() {            
+        var music1 = this.sound.add("sound1", {
+            mute: false,
+            volume: 0.1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        });
+        music1.play();
+
         this.player = new Player({scene:this, x:64, y:230});
         this.player.setScale(1.5);
         this.checkpoint = this.physics.add.sprite(864, 416,'star');   
@@ -66,6 +78,7 @@ class Scene_1 extends Phaser.Scene {
         
         this.physics.add.collider(this.player, this.starFase, () => {                                    
             this.scene.stop(Scene_0);
+            music1.stop();
             this.scene.start('SceneEnd');            
         });
     } 
