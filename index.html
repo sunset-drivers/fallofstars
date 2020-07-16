@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
         <script src="js/phaser.min.js"></script>
         <!--HANDLERS-->
         <script src="js/utils/loader.js"></script>
@@ -26,11 +29,131 @@
                 font-family: gmss;  
                 color: mintcream;              
             }
+            
         </style>
-
+        <style>
+            * {
+              box-sizing: border-box;
+            }
+            
+            .row::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            
+            [class*="col-"] {
+              float: left;
+              padding: 15px;
+            }
+                       
+            
+            .aside {
+              background-image: url('assets/sprites/title/back.png');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+              padding: 15px;
+              color: #ffffff;
+              text-align: center;
+              font-size: 14px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+              font-size:20px
+            }
+            
+            /* For mobile phones: */
+            [class*="col-"] {
+              width: 100%;
+            }
+            
+            @media only screen and (min-width: 600px) {
+              /* For tablets: */
+              .col-s-1 {width: 8.33%;}
+              .col-s-2 {width: 16.66%;}
+              .col-s-3 {width: 25%;}
+              .col-s-4 {width: 33.33%;}
+              .col-s-5 {width: 41.66%;}
+              .col-s-6 {width: 50%;}
+              .col-s-7 {width: 58.33%;}
+              .col-s-8 {width: 66.66%;}
+              .col-s-9 {width: 75%;}
+              .col-s-10 {width: 83.33%;}
+              .col-s-11 {width: 91.66%;}
+              .col-s-12 {width: 100%;}
+            }
+            @media only screen and (min-width: 1000px) {
+              /* For desktop: */
+              .col-1 {width: 8.33%;}
+              .col-2 {width: 16.66%;}
+              .col-3 {width: 25%;}
+              .col-4 {width: 33.33%;}
+              .col-5 {width: 41.66%;}
+              .col-6 {width: 50%;}
+              .col-7 {width: 58.33%;}
+              .col-8 {width: 66.66%;}
+              .col-9 {width: 75%;}
+              .col-10 {width: 83.33%;}
+              .col-11 {width: 91.66%;}
+              .col-12 {width: 100%;}
+            }
+            .button {
+              position: absolute;
+              margin-left: 145px;
+            }
+            #startBtn {
+              font-family: OpenSans;
+              color: #FFFFFF;
+              background-color: #00c4ff;
+              border: 1px solid #00c4ff;
+              border-radius: 5px;
+              box-shadow: 0px 5px 0px #48aba6;
+              position: relative;
+              top: 0px;
+              transition: all ease 0.3s;
+            }
+            #startBtn:active {
+              box-shadow: 0 3px 0 #48aba6;
+              top: 3px;
+            }
+            #startBtn:focus {outline:0;}
+            </style>
     </header>
 
-    <body style="background-color: #303030;text-align: center;">        
-        <div id="phaser-game"></div>         
+    <body style="background-color: #303030;text-align: center;">          
+        <div class="row">
+
+            <div class="col-9 col-s-9">
+                <div id="phaser-game"></div>     
+            </div>
+            
+            <div class="col-3 col-s-12">
+                <div class="aside">
+                    <h2>Instruções</h2>
+                    
+                    <h4>Movimentação</h4>
+                    <p>As Movimentações básicas do jogo, consiste em:</p>
+                    <img src="https://media.discordapp.net/attachments/597886210907570186/708114364296724550/Walking_loop.gif" style="width: 25%;"/>
+                    <div class="button">
+                      <input type="button" class="active" id="startBtn" value="&#8592;">
+                      <input type="button" class="active" id="startBtn" value="&#8594;">
+                    </div>
+                    <h4>Andar</h4>
+                    
+                    
+                    <br>
+                    <div class="button" style="margin-left: 165px;">
+                      <input type="button" class="active" id="startBtn" value="&#8593;">
+                    </div>
+                    <h4>Pular</h4>
+                    <br>
+                    <div class="button" style="margin-left: 150px;">
+                      <input type="button" class="active" id="startBtn" value="Espaço">
+                    </div>
+                    <h4>Dash</h4>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
     </body>
 </html>
