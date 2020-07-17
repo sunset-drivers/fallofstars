@@ -17,16 +17,16 @@ class Scene_0 extends Phaser.Scene {
 
     create() {                   
      
-        // var music0 = this.sound.add("sound0", {
-        //     mute: false,
-        //     volume: 0.1,
-        //     rate: 1,
-        //     detune: 0,
-        //     seek: 0,
-        //     loop: true,
-        //     delay: 0
-        // });
-       music0.play();
+    //     var music0 = this.sound.add("sound0", {
+    //         mute: false,
+    //         volume: 0.1,
+    //         rate: 1,
+    //         detune: 0,
+    //         seek: 0,
+    //         loop: true,
+    //         delay: 0
+    //     });
+    //    music0.play();
         this.player = new Player({scene:this, x:64, y:320});
         this.player.setScale(1.5);
         //CARREGANDO AS ESTRELAS
